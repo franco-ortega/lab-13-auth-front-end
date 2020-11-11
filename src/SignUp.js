@@ -6,6 +6,12 @@ export default class SignUp extends Component {
         password: ''
     }
 
+    handleSubmitSignUpForm = (e) => {
+        e.preventDefault();
+
+        console.log(this.state);
+    }
+
 
 
 
@@ -16,14 +22,18 @@ export default class SignUp extends Component {
                 <p>
                     Fill out this lovely form to get your chores done. :)
                 </p>
-                <form>
+                <form onSubmit={this.handleSubmitSignUpForm}>
                     <label>
                         Username:
-                        <input />
+                        <input
+                        onChange={(e) => this.setState({ username: e.target.value })}
+                        value={this.state.username} />
                     </label>
                     <label>
                         Password:
-                        <input />
+                        <input
+                        onChange={(e) => this.setState({ password: e.target.value })}
+                        value={this.state.password} type='password'/>
                     </label>
                     <button>
                         Sign Up!
