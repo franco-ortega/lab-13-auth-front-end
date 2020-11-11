@@ -5,6 +5,8 @@ import {
     Switch,
     Link,
 } from "react-router-dom";
+import './App.css';
+import Home from './Home.js';
 import Todos from './Todos.js';
 import Login from './Login.js'
 import SignUp from './SignUp.js'
@@ -21,7 +23,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <Router>
+        <Router>TESTING
           <ul>
             { this.state.token && <div>welcome, user!!!</div> }
             { this.state.token && <Link to="/todos"><div>todos</div></Link> }
@@ -30,6 +32,10 @@ export default class App extends Component {
             <button onClick={() => this.handleTokenChange('')}>logout</button>
           </ul>
           <Switch>
+            <Route exact path='/home' render={(routerProps) => <Home 
+                handleTokenChange={this.handleTokenChange} 
+                {...routerProps} />} 
+              />
             <Route exact path='/login' render={(routerProps) => <Login 
                 handleTokenChange={this.handleTokenChange} 
                 {...routerProps} />} 
