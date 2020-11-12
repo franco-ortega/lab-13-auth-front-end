@@ -1,15 +1,27 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import request from 'superagent';
 
 export default class SignUp extends Component {
     state = {
         username: '',
-        password: ''
+        password: '',
+        loading: false
     }
 
-    handleSubmitSignUpForm = (e) => {
+    handleSubmitSignUpForm = async (e) => {
         e.preventDefault();
 
         console.log(this.state);
+
+        this.setState({ loading: true })
+
+        const user = await request
+        .post('https://still-chamber-35164.herokuapp.com/todos/auth/signup')
+        .send(this.state)
+
+        console.log(user.body, 'sending signup info');
+
+        this.setState({ loading: false })
     }
 
 
@@ -35,9 +47,13 @@ export default class SignUp extends Component {
                         onChange={(e) => this.setState({ password: e.target.value })}
                         value={this.state.password} type='password'/>
                     </label>
-                    <button>
-                        Sign Up!
-                    </button>
+                    {
+                        this.state.loading
+                        ? '~ ~ ~ ~ ~ Loading ~ ~ ~ ~ ~'
+                        : <button>
+                            Sign Up!
+                        </button>
+                    }
                 </form>
             </div>
         )
