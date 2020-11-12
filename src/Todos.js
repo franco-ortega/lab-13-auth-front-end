@@ -64,7 +64,8 @@ export default class Todos extends Component {
                     this.state.loading
                     ? '~ ~ ~ ~ ~ Loading ~ ~ ~ ~ ~'
                     : this.state.todos.map(todo =>
-                        <div key={`${todo.chore}${todo.id}${Math.random()}`} style={{ textDecoration: todo.comleted ? 'line-through' : 'none'}}
+                        <div key={`${todo.todoName}${todo.id}${Math.random()}`} style={{ 
+                            textDecoration: todo.comleted ? 'line-through' : 'none'}}
                         >
                             Chore: {todo.chore}
                             {
