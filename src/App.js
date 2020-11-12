@@ -43,20 +43,25 @@ export default class App extends Component {
       <div>
         <Router>Welcome to the Todos Website for Chores
           <ul>
-            {this.state.username}
-            {/* { this.state.token && <div>welcome, user!!!</div> }
-            { this.state.token && <Link to="/todos"><div>todos</div></Link> } */}
-            <Link to="/login"><div>Log In</div></Link>
+            {
+              this.state.token
+              ? <div>
+                {this.state.username}
+                <button onClick={this.logOut}>Log Out</button>
+              </div>
+              : <>
+              <Link to="/login"><div>Log In</div></Link>
             <Link to="/signup"><div>Sign Up</div></Link>
-            <button onClick={() => this.handleTokenChange('')}>logout</button>
+              </>
+            }
           </ul>
           <Switch>
             <Route exact path='/' render={(routerProps) => <Home 
-                handleTokenChange={this.handleTokenChange} 
+                handleChangeUsernameAndToken={this.handleChangeUsernameAndToken} 
                 {...routerProps} />} 
               />
             <Route exact path='/login' render={(routerProps) => <Login 
-                handleTokenChange={this.handleTokenChange} 
+                handleChangeUsernameAndToken={this.handleChangeUsernameAndToken} 
                 {...routerProps} />} 
               />
             <Route 
