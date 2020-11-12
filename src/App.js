@@ -56,13 +56,13 @@ export default class App extends Component {
             }
           </ul>
           <Switch>
-            <Route exact path='/' render={(routerProps) => <Home 
+            <Route exact path='/' render={(routerProps) => <Home {...routerProps} />} />
+            <Route exact path='/login' render={(routerProps) =>
+            <Login 
+            {...routerProps}
                 handleChangeUsernameAndToken={this.handleChangeUsernameAndToken} 
-                {...routerProps} />} 
-              />
-            <Route exact path='/login' render={(routerProps) => <Login 
-                handleChangeUsernameAndToken={this.handleChangeUsernameAndToken} 
-                {...routerProps} />} 
+                />
+              } 
               />
             <Route 
             exact
@@ -74,13 +74,11 @@ export default class App extends Component {
                 />
                 } 
               />
-            {/* //   notice that we pass the token here! This is required! */}
-            <PrivateRoute 
-              exact 
-              path='/todos' 
-              token={this.state.token} 
-              render={(routerProps) => <Todos 
-              {...routerProps} token={this.state.token} />} />
+            <PrivateRoute
+              token={this.state.token}
+              exact
+              path='/todos'
+              render={(routerProps) => <Todos {...routerProps} token={this.state.token} />} />
           </Switch>
         </Router>
       </div>

@@ -21,7 +21,7 @@ export default class Todos extends Component {
                 {
                     Boolean(this.state.todos.length) && this.state.todos.map(todo =>
                         <div>
-                            name: {todo.chore}; completed: {todo.comleted}
+                            Chore: {todo.chore}; Done Yet?: {todo.comleted}
                         </div>)
                 }
             </div>

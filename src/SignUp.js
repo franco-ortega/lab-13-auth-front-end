@@ -11,7 +11,7 @@ export default class SignUp extends Component {
     handleSubmitSignUpForm = async (e) => {
         e.preventDefault();
 
-        console.log(this.state);
+console.log(this.state);
 
         this.setState({ loading: true })
 
@@ -19,23 +19,21 @@ export default class SignUp extends Component {
         .post('https://still-chamber-35164.herokuapp.com/auth/signup')
         .send(this.state)
 
-        console.log(user.body, 'sending signup info');
+console.log(user.body, 'sending signup info');
 
         this.setState({ loading: false })
 
-        this.props.handleChangeUsernameAndToken(user.body.username, user.body.token)
+        this.props.handleChangeUsernameAndToken(user.body.email, user.body.token)
 
-        this.props.history.push('/');
+        this.props.history.push('/todos');
 
     }
-
-
 
 
     render() {
         return (
             <div>
-                SIGN UP PAGE!!!
+                Sign Up to do Chores!!!
                 <p>
                     Fill out this lovely form to get your chores done. :)
                 </p>
