@@ -18,11 +18,6 @@ export default class App extends Component {
     token: localStorage.getItem('TOKEN') || ''
   }
 
-  // handleTokenChange = (myToken) => {
-  //   this.setState({ token: myToken });
-  //   localStorage.setItem('TOKEN', myToken);
-  // }
-
   handleChangeUsernameAndToken = (myUsername, myToken) => {
     localStorage.setItem('USERNAME', myUsername);
     localStorage.setItem('TOKEN', myToken);
@@ -31,8 +26,16 @@ export default class App extends Component {
       username: myUsername,
       token: myToken
     });
-    
-//    localStorage.setItem('TOKEN', myToken);
+  }
+
+    logOut = () => {
+      localStorage.setItem('USERNAME', '');
+      localStorage.setItem('TOKEN', '');
+
+      this.setState({
+        username: '',
+        token: ''
+    }) 
   }
 
   render() {

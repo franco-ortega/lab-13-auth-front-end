@@ -3,7 +3,7 @@ import request from 'superagent';
 
 export default class SignUp extends Component {
     state = {
-        username: '',
+        email: '',
         password: '',
         loading: false
     }
@@ -16,12 +16,17 @@ export default class SignUp extends Component {
         this.setState({ loading: true })
 
         const user = await request
-        .post('https://still-chamber-35164.herokuapp.com/todos/auth/signup')
+        .post('https://still-chamber-35164.herokuapp.com/auth/signup')
         .send(this.state)
 
         console.log(user.body, 'sending signup info');
 
         this.setState({ loading: false })
+
+        this.props.handleChangeUsernameAndToken(user.body.username, user.body.token)
+
+        this.props.history.push('/');
+
     }
 
 
@@ -36,10 +41,10 @@ export default class SignUp extends Component {
                 </p>
                 <form onSubmit={this.handleSubmitSignUpForm}>
                     <label>
-                        Username:
+                        Email:
                         <input
-                        onChange={(e) => this.setState({ username: e.target.value })}
-                        value={this.state.username} />
+                        onChange={(e) => this.setState({ email: e.target.value })}
+                        value={this.state.email} />
                     </label>
                     <label>
                         Password:
