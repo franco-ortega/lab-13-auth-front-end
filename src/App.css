@@ -1,8 +1,13 @@
-form {
-  /* text-align: center; */
+
+div {
+  margin: 5px;
 }
 
 label {
   display: block;
+  margin: 5px;
+}
+
+button {
   margin: 5px;
 }
